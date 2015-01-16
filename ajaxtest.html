@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <h1>Please enter a movie title:</h1>
+    <input type = "textbox" placeholder = "Enter movie title.">
+    <button>Submit</button><br><br>
+    <h3></h3>
+    <img>
+    <script charset = "utf8">
+      var input = document.querySelector("input");
+      var button = document.querySelector("button");
+      button.addEventListener('click', function() {
+        var text = input.value;
+        var safe_url = encodeURI(text)
+        var url = "http://omdbapi.com?t=" + safe_url;
+        var xhr = new XMLHttpRequest();
+              xhr.open("GET", url);
+
+      xhr.addEventListener('load', function(e){
+      var name = document.querySelector("h3");
+      var img = document.querySelector("img");
+      var d = xhr.responseText;
+      var parsed = JSON.parse(d)
+        console.log(parsed);
+      img.src = parsed.Poster;
+      name.innerHTML = parsed.Title;
+      input.value = "";
+      })
+      xhr.send();
+    })
+    </script>
+  </body>
+</html>

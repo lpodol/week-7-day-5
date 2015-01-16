@@ -1,0 +1,87 @@
+Notes (Week 7, Day 5)
+
+***
+Form review:
+
+HTTP verbs:
+
+Get
+Post
+Put
+Delete
+(Less popular are "head" and "patch")
+
+Once APIs started coming around, data started coming through web services; once people started getting more disciplined, conventions and protocols for this evolved. These verbs constrain and structure add consistency across APIs. When you upload a photo, for instance you should use "post," etc. "Get" will work, but almost everyone uses "post." When you are accessing info that already exists, use get. If you're adding the info, use post.
+
+For <form action = "/something" method = "post">
+
+Single responsibility principle v. monolith
+SRPs do one thing well. These are newer and pretty powerful. Monolith (which is sort of a pejorative term) refers to a package that centralizes and does everything. Rails is a monolith. Node is the opposite. EJS for one thing, web sockets for another thing, etc. Express is less of a monolith than Rails.
+
+  res.render('todo.ejs', { items: items });
+
+See the above. Which one is the variable that needs to be called in the scope? The second one. In this case, the first "items" is the "template" one. Now the ejs file (where we'll call that template one "stuff" can do things like:
+
+<% if (stuff.length>0)
+
+In order to write this Express server, you need to include:
+
+var express - require('express');
+var ejs = require('ejs')
+
+Requiring ejs makes Express able to use ejs, but you never use this variable. Sean is not sure why.
+
+Here is how you would call list items w/ objects in JavaScript:
+
+<% items.forEach(function(item){ %>
+  <%=item.first%>
+  <%=item.last%>
+  <%=item.email%>
+<% }) %>
+
+One more thing we need to do in Express that we don't need to do in Sinatra: In Sinatra, you can just say "post" instead of "get" and it works. Express used to do this, but decided to become more modular once users started commenting on Express's monolith-like properties. Now Express requires another package for this. In order to handle post requests in Express, you need Body Parser. This annoys everyone.
+
+var bodyParser = require('body-parser');
+
+var app = express();
+app.use(bodyParser.urlencoded({extended: true}));
+
+Sinatra: params[:name]
+Express:  req.params.name
+          req.query.name
+          req.body.name
+
+When you make a post request, use req.body.name.
+
+When someone makes a request in the browser, like '/add/:name,' you can use req.params.name.
+
+When the route is like this: '/add' and the browser URL shows this: /add?name=sean, that's req.query.name. You can have multiple params with query params. All starts with a ?, then params, then ampersand, then new params. /add?name=sean&age=29.
+
+***
+***
+***
+
+AJAX:
+
+var url = "http://someurl"
+var xhr = new XMLHttpRequest(); <----Here's a constructor!
+xhr.open("GET", url); <----let's get that URL
+xhr.addEventListener('load', function(e) {
+  var d = xhr.responseText
+  var parsed = JSON.parse(d) <-----let's JSON this shit
+  console.log(parsed)
+})
+xhr.send();
+
+An aside about event listeners:
+_______________________________
+Modern event listeners:
+button.on("click", function . . .
+
+Old-style event listeners:
+button.onclick = function . . .
+_______________________________
+
+
+
+

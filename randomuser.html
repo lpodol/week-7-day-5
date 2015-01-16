@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <script>
+    var url = "http://api.randomuser.me"
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.addEventListener('load', function(e) {
+      var d = xhr.responseText;
+      var parsed = JSON.parse(d);
+      console.log(parsed.results[0].user.email)
+    });
+    xhr.send();
+    </script>
+  </body>
+</html>

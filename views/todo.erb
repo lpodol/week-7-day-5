@@ -1,0 +1,20 @@
+<html>
+<body>
+
+<form action="/add" method="post">
+  <input type="text" name="first" placeholder = "First Name"><br>
+  <input type="text" name="last" placeholder = "Last Name"><br>
+  <input type ="text" name = "email" placeholder = "Email"><br>
+  <input type="submit" value="Add">
+</form>
+
+<% if (information) %>
+<ul>
+  <% information.each do |name| %>
+    <li><%= name[:first] %> <%= name[:last] %>, <%= name[:email] %></li>
+  <% end %>
+</ul>
+<% end %>
+
+</body>
+</html>
