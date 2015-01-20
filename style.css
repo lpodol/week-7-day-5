@@ -1,5 +1,42 @@
-div{
-	display: inline-block;
-	height: 100px;
+body{
+ 	background-color: #71BCFF
+}
+h1{
+	margin: 70px auto;
+	padding: 10px;
+	border: black solid 2px;
 	width: 200px;
+}
+div{
+	color: #71BCFF;
+	transition: color .6s;
+
+}
+#title, #plot, #credits, h1{
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+#title{
+	font-size: 30px;
+	font-weight: 900;
+}
+div{
+	float: left;
+	width: 230px;
+	margin-left: 20px;
+	background-color: #71BCFF;
+}
+img{
+	height: 280px;
+	width: 230px;
+	border: black solid 3px;
+	margin-left: 10px;
+}
+div:hover{
+	color: black;
+	opacity: 1;
+}
+p{
+	margin-left: 10px;
+	text-align: center;
 }
